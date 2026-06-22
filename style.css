@@ -1191,3 +1191,85 @@ a {
     margin-bottom: 24px;
   }
 }
+
+/* ---- カラオケルームセクション ---- */
+.karaoke {
+  background: var(--cream);
+  position: relative;
+}
+
+.karaoke::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--green), var(--orange), var(--red));
+}
+
+.karaoke-content {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 48px;
+  align-items: center;
+}
+
+.karaoke-slider-container {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  background: #000;
+}
+
+.karaoke-slider {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.karaoke-slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+}
+
+.karaoke-slide.active {
+  opacity: 1;
+}
+
+.karaoke-desc h3 {
+  font-size: clamp(1.2rem, 3vw, 1.6rem);
+  font-weight: 900;
+  color: var(--bark);
+  margin-bottom: 16px;
+  line-height: 1.4;
+}
+
+.karaoke-desc p {
+  font-size: 1rem;
+  color: var(--text-lt);
+  line-height: 1.8;
+  margin-bottom: 16px;
+}
+
+.karaoke-note {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--red);
+  margin-bottom: 0 !important;
+}
+
+/* カラオケルーム レスポンシブ対応 */
+@media (max-width: 900px) {
+  .karaoke-content {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+}

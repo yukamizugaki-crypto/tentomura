@@ -58,7 +58,7 @@ const observer = new IntersectionObserver((entries) => {
 
 // アニメーションターゲットを設定
 const animTargets = document.querySelectorAll(
-  '.about-card, .event-card, .gallery-item, .info-table-wrap, .map-wrap, .bigmsg-inner, .reserve-text, .instagram-placeholder-item'
+  '.about-card, .event-card, .gallery-item, .info-table-wrap, .map-wrap, .bigmsg-inner, .reserve-text, .instagram-placeholder-item, .karaoke-slider-container, .karaoke-desc'
 );
 
 animTargets.forEach((el, i) => {
@@ -93,3 +93,18 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     window.scrollTo({ top, behavior: 'smooth' });
   });
 });
+
+// ---- カラオケスライドショー ----
+const initKaraokeSlider = () => {
+  const slides = document.querySelectorAll('.karaoke-slide');
+  if (slides.length < 2) return;
+
+  let current = 0;
+  setInterval(() => {
+    slides[current].classList.remove('active');
+    current = (current + 1) % slides.length;
+    slides[current].classList.add('active');
+  }, 5000);
+};
+
+initKaraokeSlider();
