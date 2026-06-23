@@ -1259,6 +1259,100 @@ a {
   margin-bottom: 16px;
 }
 
+/* わんちゃん同伴ルールボックス */
+.karaoke-rule-box {
+  background: var(--white);
+  border: 1px solid rgba(93, 58, 26, 0.15);
+  border-left: 5px solid var(--red);
+  border-radius: 10px;
+  padding: 20px;
+  margin: 24px 0;
+  box-shadow: 0 4px 15px rgba(93, 58, 26, 0.06);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.karaoke-rule-box:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(93, 58, 26, 0.1);
+}
+
+.karaoke-rule-box .rule-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 700;
+  font-size: 1.05rem;
+  color: var(--bark);
+  margin-bottom: 16px;
+  border-bottom: 1px solid rgba(93, 58, 26, 0.1);
+  padding-bottom: 8px;
+}
+
+.karaoke-rule-box .rule-title .rule-icon {
+  font-size: 1.2rem;
+}
+
+.karaoke-rule-box .rule-content {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.karaoke-rule-box .rule-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.karaoke-rule-box .badge {
+  flex-shrink: 0;
+  font-size: 0.78rem;
+  font-weight: 700;
+  padding: 4px 12px;
+  border-radius: 6px;
+  color: var(--white);
+  text-align: center;
+  min-width: 95px;
+}
+
+.karaoke-rule-box .badge.ok {
+  background-color: var(--green);
+}
+
+.karaoke-rule-box .badge.ng {
+  background-color: var(--red);
+}
+
+.karaoke-rule-box .rule-item p {
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: var(--text);
+  margin-bottom: 0;
+}
+
+.karaoke-rule-box .rule-item p strong {
+  font-weight: 700;
+}
+
+.karaoke-rule-box .rule-item.yes p strong {
+  color: var(--green);
+}
+
+.karaoke-rule-box .rule-item.no p strong {
+  color: var(--red);
+}
+
+@media (max-width: 480px) {
+  .karaoke-rule-box .rule-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+  }
+  .karaoke-rule-box .badge {
+    min-width: auto;
+  }
+}
+
 .karaoke-note {
   font-size: 0.88rem;
   font-weight: 700;
