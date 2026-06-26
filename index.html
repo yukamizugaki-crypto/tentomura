@@ -27,8 +27,8 @@
       </button>
       <nav class="site-nav" id="site-nav">
         <ul>
-          <li><a href="#about">テント村について</a></li>
           <li><a href="#instagram">Instagram</a></li>
+          <li><a href="#about">テント村について</a></li>
           <li><a href="#events">イベント</a></li>
           <li><a href="#karaoke">カラオケ</a></li>
           <li><a href="#info">アクセス</a></li>
@@ -65,6 +65,76 @@
     </div>
   </section>
 
+  <!-- Instagram自動連携セクション -->
+  <section class="instagram" id="instagram">
+    <div class="section-inner">
+      <div class="section-label">INSTAGRAM</div>
+      <h2 class="section-title">Instagram</h2>
+      <p class="instagram-intro">お店の最新情報や、遊びに来てくれたわんちゃんたちの様子を更新中！🐾</p>
+      
+      <!-- Instagram連携表示エリア -->
+      <div class="instagram-feed-container">
+        <!-- 
+          💡 Instagram自動連携ツールの埋め込み用プレースホルダー
+          自動連携ツール（LightWidgetやSnapWidgetなど）のコードを取得したら、以下のプレースホルダー用HTMLを削除し、
+          取得した埋め込みコード（iframeなど）をここに貼り付けてください。
+        -->
+        <behold-widget feed-id="9G1FYWdBOVviyK4px8Gt"></behold-widget>
+        <script>
+          (() => {
+            // Intercept attachShadow to inject custom styles inside the closed shadow DOM of the Behold widget
+            const originalAttachShadow = Element.prototype.attachShadow;
+            Element.prototype.attachShadow = function(init) {
+              const shadowRoot = originalAttachShadow.call(this, init);
+              
+              const injectStyle = () => {
+                if (shadowRoot.querySelector('style[data-custom-layout]')) return;
+                const style = document.createElement('style');
+                style.setAttribute('data-custom-layout', 'true');
+                style.textContent = `
+                  .posts {
+                    grid-template-columns: repeat(2, 1fr) !important;
+                  }
+                  .posts > *:nth-child(n+7) {
+                    display: none !important;
+                  }
+                `;
+                shadowRoot.appendChild(style);
+              };
+
+              // Override replaceChildren and appendChild to make sure style persists after rendering/upgrades
+              const originalReplaceChildren = shadowRoot.replaceChildren;
+              shadowRoot.replaceChildren = function(...args) {
+                originalReplaceChildren.apply(this, args);
+                injectStyle();
+              };
+
+              const originalAppendChild = shadowRoot.appendChild;
+              shadowRoot.appendChild = function(child) {
+                const result = originalAppendChild.call(this, child);
+                injectStyle();
+                return result;
+              };
+
+              injectStyle();
+              return shadowRoot;
+            };
+
+            const d=document,s=d.createElement("script");s.type="module";
+            s.src="https://w.behold.so/widget.js";d.head.append(s);
+          })();
+        </script>
+      </div>
+
+      <div class="instagram-btn-wrap">
+        <a href="https://www.instagram.com/junkomama.tentmura/" target="_blank" rel="noopener" class="btn btn-instagram">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="20" height="20" style="margin-right: 4px; vertical-align: middle;"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+          Instagram公式アカウントはこちら
+        </a>
+      </div>
+    </div>
+  </section>
+
   <!-- テント村についてセクション -->
   <section class="about" id="about">
     <div class="section-inner">
@@ -86,49 +156,6 @@
           <h3>わんちゃん大歓迎</h3>
           <p>愛犬と一緒に来られる居酒屋はなかなかないですよね。テント村ではわんちゃんも家族の一員として大歓迎します！</p>
         </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Instagram自動連携セクション -->
-  <section class="instagram" id="instagram">
-    <div class="section-inner">
-      <div class="section-label">INSTAGRAM</div>
-      <h2 class="section-title">Instagram</h2>
-      <p class="instagram-intro">お店の最新情報や、遊びに来てくれたわんちゃんたちの様子を更新中！🐾</p>
-      
-      <!-- Instagram連携表示エリア -->
-      <div class="instagram-feed-container">
-        <!-- 
-          💡 Instagram自動連携ツールの埋め込み用プレースホルダー
-          自動連携ツール（LightWidgetやSnapWidgetなど）のコードを取得したら、以下のプレースホルダー用HTMLを削除し、
-          取得した埋め込みコード（iframeなど）をここに貼り付けてください。
-        -->
-        <div class="instagram-placeholder-grid">
-          <div class="instagram-placeholder-item">
-            <img src="img/menu1.png" alt="Instagram 投稿プレースホルダー1" />
-            <div class="instagram-placeholder-overlay"><span class="instagram-icon">📸</span></div>
-          </div>
-          <div class="instagram-placeholder-item">
-            <img src="img/menu2.png" alt="Instagram 投稿プレースホルダー2" />
-            <div class="instagram-placeholder-overlay"><span class="instagram-icon">📸</span></div>
-          </div>
-          <div class="instagram-placeholder-item">
-            <img src="img/menu3.png" alt="Instagram 投稿プレースホルダー3" />
-            <div class="instagram-placeholder-overlay"><span class="instagram-icon">📸</span></div>
-          </div>
-          <div class="instagram-placeholder-item">
-            <img src="img/menu4.png" alt="Instagram 投稿プレースホルダー4" />
-            <div class="instagram-placeholder-overlay"><span class="instagram-icon">📸</span></div>
-          </div>
-        </div>
-      </div>
-
-      <div class="instagram-btn-wrap">
-        <a href="https://www.instagram.com/junkomama.tentmura/" target="_blank" rel="noopener" class="btn btn-instagram">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="20" height="20" style="margin-right: 4px; vertical-align: middle;"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
-          Instagram公式アカウントはこちら
-        </a>
       </div>
     </div>
   </section>
