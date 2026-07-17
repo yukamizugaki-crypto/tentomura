@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://yukamizugaki-crypto.github.io/tentomura/sitemap.xml
+Sitemap: https://tentomura-kawaguchi.pages.dev/sitemap.xml
